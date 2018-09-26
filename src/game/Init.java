@@ -12,16 +12,16 @@ import java.awt.Graphics2D;
  * @author p01004090
  */
 public class Init {
-
+    MyShip myShip;
     public Init(MyCanvas c, MyImages i) {
-        
+        myShip = new MyShip(c,i);
     }
     
     public void draw(Graphics2D g2d){
-        
+        myShip.draw(g2d);
     }
     
     public void update(){
-        
+        myShip.update();
     }
 }
