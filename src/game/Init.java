@@ -14,7 +14,7 @@ import java.awt.Graphics2D;
 public class Init {
 
     public Init(MyCanvas c, MyImages i) {
-        new CreateMap(c,i);
+        
     }
     
     public void draw(Graphics2D g2d){

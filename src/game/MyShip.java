@@ -8,12 +8,8 @@ package game;
 
 /**
  *
- * @author P01004090
+ * @author eas7.de-play
  */
-public class CreateMap {
-
-    public CreateMap(MyCanvas c, MyImages i) {
-        
-    }
+public class MyShip {
     
 }
