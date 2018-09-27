@@ -45,20 +45,16 @@ public class MyShip implements KeyListener {
     private void shooting() {
         shoot = true;
         System.out.println("baaahhmmmm");
-        
     }
 
     public void update() {
-        if (left) {
+        if ((polygon.xpoints[0] > 0) && (left)) {
             polygon.translate(-5, 0);
         }
-        if (right) {
+        // TODO Definiere Bildschirmgrösse durch Variable
+        if ((polygon.xpoints[2] <= (800 - 20)) && (right)) {
             polygon.translate(+5, 0);
         }
-//        if (shoot) {
-//            shooting();
-//            
-//        }
     }
 
     @Override
