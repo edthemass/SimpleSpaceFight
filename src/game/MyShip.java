@@ -43,23 +43,27 @@ public class MyShip implements KeyListener {
     }
 
     private void shooting() {
+        shoot = true;
         System.out.println("baaahhmmmm");
+        
     }
 
-    public void update(){
+    public void update() {
         if (left) {
             polygon.translate(-5, 0);
         }
         if (right) {
             polygon.translate(+5, 0);
         }
-        if (shoot) {
-            shooting();
-        }
+//        if (shoot) {
+//            shooting();
+//            
+//        }
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+    }
 
     @Override
     public void keyPressed(KeyEvent e) {
@@ -69,8 +73,8 @@ public class MyShip implements KeyListener {
         if (e.getKeyCode() == KeyEvent.VK_D) {
             right = true;
         }
-        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-            shoot = true;
+        if ((e.getKeyCode() == KeyEvent.VK_SPACE) && (!shoot)) {
+            shooting();
         }
     }
 
@@ -81,6 +85,9 @@ public class MyShip implements KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_D) {
             right = false;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            shoot = false;
         }
     }
 
