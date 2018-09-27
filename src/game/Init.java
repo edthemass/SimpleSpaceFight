@@ -61,11 +61,13 @@ public class Init {
             }
             // wenn Feind geetroffen wird = löschen und Kugel auch
             for (int j = 0; j < bullets.size(); j++) {
-                if (enemys.get(i).polygon.contains(bullets.get(j).polygon.getBounds())) {
-                    enemys.remove(i);
+                // Aber nur wenn ein Feind existiert ansonsten Exception
+                if ((enemys.size() > 0) && (enemys.get(i).polygon.contains(bullets.get(j).polygon.getBounds()))) {
+                    enemys.get(i).killed = true;
                     bullets.remove(j);
                 }
             }
         }
+
     }
 }

@@ -47,9 +47,6 @@ public class MyShip implements KeyListener {
 
     private void shooting() {
         shoot = true;
-        //new Bullet();
-        System.out.println("baaahhmmmm");
-//        bulletTest = new Bullet(polygon.xpoints[1], polygon.ypoints[1]);
         canvas.init.bullets.add(new Bullet(polygon.xpoints[1], polygon.ypoints[1], false));
     }
 
