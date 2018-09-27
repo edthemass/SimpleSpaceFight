@@ -25,6 +25,7 @@ public class ProjectMain {
         frame.setSize(frameSize);
         // ONLY TESTING
         frame.setLocation(200, 300);
+        frame.setResizable(false);
 //        frame.setLocationRelativeTo(null);
         frame.add(new MyCanvas(frameSize));
 //        canvas.setFrameSize();
