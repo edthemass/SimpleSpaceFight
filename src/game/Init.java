@@ -39,25 +39,33 @@ public class Init {
 
     public void update() {
         myShip.update();
+
+        for (int i = 0; i < bullets.size(); i++) {
+            if (myShip.polygon.contains(bullets.get(i).polygon.getBounds())) {
+                myShip.killed = true;
+            }
+        }
+        // Bullets Flug und Spielfeld verlassen. Gilt für beide Seiten
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).update();
             if (bullets.get(i).out == true) {
                 bullets.remove(i);
             }
         }
+
+        // Schuss auf Feind prüfen
         for (int i = 0; i < enemys.size(); i++) {
             enemys.get(i).update();
             if (enemys.get(i).killed == true) {
                 enemys.remove(i);
             }
             // wenn Feind geetroffen wird = löschen und Kugel auch
-            for(int j = 0; j < bullets.size(); j++){
-                if(enemys.get(i).polygon.contains(bullets.get(j).polygon.getBounds())){
+            for (int j = 0; j < bullets.size(); j++) {
+                if (enemys.get(i).polygon.contains(bullets.get(j).polygon.getBounds())) {
                     enemys.remove(i);
                     bullets.remove(j);
                 }
             }
-            
         }
     }
 }
