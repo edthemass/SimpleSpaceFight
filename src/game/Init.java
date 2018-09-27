@@ -30,7 +30,7 @@ public class Init {
 //        startsWar();
     }
 
-    public void startsWar() {
+    public void newEnemy() {
         int ranX = random.nextInt(750);
         enemys.add(new Enemy(c, images, ranX, 0));
     }
@@ -50,7 +50,7 @@ public class Init {
         --timer;
         if(timer < 0){
             timer = random.nextInt(100) + 100;
-            startsWar();
+            newEnemy();
         }
         
         myShip.update();
@@ -76,11 +76,14 @@ public class Init {
             for (int j = 0; j < bullets.size(); j++) {
                 // Aber nur wenn ein Feind existiert ansonsten Exception
                 if ((enemys.size() > 0) && (enemys.get(i).polygon.contains(bullets.get(j).polygon.getBounds()))) {
-                    enemys.get(i).killed = true;
-                    bullets.remove(j);
+                    // kein FriendlyFire
+                    if(!bullets.get(j).enemyShoot){
+                        enemys.get(i).killed = true;
+                        bullets.remove(j);
+                    }
                 }
             }
-            
+            // wenn Enemy flag auf Tot steht sterben
             if (enemys.get(i).killed == true) {
                 enemys.remove(i);
             }
