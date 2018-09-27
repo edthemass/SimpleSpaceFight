@@ -44,10 +44,9 @@ public class MyShip implements KeyListener {
 
     private void shooting() {
         System.out.println("baaahhmmmm");
-        shoot = false;
     }
 
-    public void update() throws InterruptedException {
+    public void update(){
         if (left) {
             polygon.translate(-5, 0);
         }

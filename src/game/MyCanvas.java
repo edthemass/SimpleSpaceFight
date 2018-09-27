@@ -12,51 +12,50 @@ import java.awt.RenderingHints;
 import javax.swing.JComponent;
 
 /**
- * 
+ *
  * @author p01004090
  */
-public class MyCanvas extends JComponent implements Runnable{
+public class MyCanvas extends JComponent implements Runnable {
 
     private static final long MAX_LOOP_TIME = 16;// 1 SEK / 60  = FPS
     private Thread thread;
 //    private Images images;
     private Init init;
 
-    
     public MyCanvas(Dimension dim) {
 //        images = new Images();
         init = new Init(this, new MyImages());
         thread = new Thread(this);
         thread.start();
     }
-    
+
     @Override
-    protected void paintComponent(Graphics g){
+    protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         init.draw(g2d);
     }
-    
-    public void update(){ 
+
+    public void update() {
         init.update();
     }
-    
+
     @Override
     public void run() {
         long newTimestamp, oldTimestamp;
-        while(true){
+        while (true) {
             oldTimestamp = System.currentTimeMillis();
             update();
             newTimestamp = System.currentTimeMillis();
-            if(newTimestamp - oldTimestamp > MAX_LOOP_TIME){
+            if (newTimestamp - oldTimestamp > MAX_LOOP_TIME) {
                 System.out.println("late");
                 continue;
             }
             render();
-            newTimestamp = System.currentTimeMillis();        
+            newTimestamp = System.currentTimeMillis();
             // wenn zeit unterschritten wird thread wartet
-            if(newTimestamp - oldTimestamp <= MAX_LOOP_TIME){
+            if (newTimestamp - oldTimestamp <= MAX_LOOP_TIME) {
                 try {
                     Thread.sleep(MAX_LOOP_TIME - (newTimestamp - oldTimestamp));
                 } catch (Exception e) {
@@ -65,9 +64,8 @@ public class MyCanvas extends JComponent implements Runnable{
             }
         }
     }
-    
 
-    public void render(){
+    public void render() {
         repaint();
     }
 }
