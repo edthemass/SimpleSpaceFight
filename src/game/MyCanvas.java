@@ -21,7 +21,7 @@ public class MyCanvas extends JComponent implements Runnable {
     private static final long MAX_LOOP_TIME = 16;// 1 SEK / 60  = FPS
     private Thread thread;
 //    private Images images;
-    private Init init;
+    public Init init;
     
 
     public MyCanvas(Dimension dim) {
@@ -31,6 +31,8 @@ public class MyCanvas extends JComponent implements Runnable {
         thread.start();
     }
 
+    
+    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

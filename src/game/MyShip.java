@@ -26,7 +26,7 @@ public class MyShip implements KeyListener {
     MyCanvas canvas;
     Bullet bulletTest;
     boolean left, right, shoot;
-    ArrayList<Bullet> bullets = new ArrayList<Bullet>();
+//    ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     
 
     public MyShip(MyCanvas c, MyImages i) {
@@ -44,17 +44,14 @@ public class MyShip implements KeyListener {
 
     public void draw(Graphics2D g2d) {
         g2d.drawPolygon(polygon);
-        for (Bullet bullet1 : bullets) {
-            bullet1.draw(g2d);
-        }
     }
-
+    
     private void shooting() {
         shoot = true;
         //new Bullet();
         System.out.println("baaahhmmmm");
         bulletTest = new Bullet(polygon.xpoints[1], polygon.ypoints[1]);
-        bullets.add(new Bullet(polygon.xpoints[1], polygon.ypoints[1]));
+        canvas.init.bullets.add(new Bullet(polygon.xpoints[1], polygon.ypoints[1]));
     }
 
     public void update() {
@@ -64,13 +61,6 @@ public class MyShip implements KeyListener {
         // TODO Definiere Bildschirmgrösse durch Variable
         if ((polygon.xpoints[2] <= (800 - 20)) && (right)) {
             polygon.translate(+5, 0);
-        }
-        // wenn kugeln aus bildschirm fliegen = löschen
-        for(int i = 0; i < bullets.size(); i++) {
-            bullets.get(i).update();
-            if(bullets.get(i).out == true){
-                bullets.remove(i);
-            }
         }
     }
 
