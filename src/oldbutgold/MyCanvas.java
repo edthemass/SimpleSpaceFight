@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package oldbutgold;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -35,6 +35,7 @@ public class MyCanvas extends JComponent implements Runnable {
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         init.draw(g2d);
+        Painter.draw(g2d);
     }
 
     public void update() {
