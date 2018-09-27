@@ -15,24 +15,29 @@ import java.awt.Polygon;
 public class Bullet {
 
     int[] xPoints = {0, 3, 6};
-    int[] yPoints = {3, 3, 3};
+    int[] yPoints = {3, 0, 3};
     int nPoints = 3;
-    int x;
+    int x, y;
     Polygon polygon;
+    boolean out = false;
 
-    public Bullet() {
+    public Bullet(int x, int y) {
+        this.x = x;
+        this.y = y;
         polygon = new Polygon(xPoints, yPoints, nPoints);
+        polygon.translate(x, y);
     }
 
     public void draw(Graphics2D g2d) {
         g2d.drawPolygon(polygon);
-
     }
 
     public void update() {
-        polygon.translate(x, -8);
+        // -3 Geschwindigkeit
+        polygon.translate(0, -3);
         if (polygon.ypoints[1] < 0) {
             System.out.println("out of place");
+            out = true;
         }
     }
 

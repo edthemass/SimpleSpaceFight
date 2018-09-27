@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.util.ArrayList;
 import javax.swing.JComponent;
 
 /**
@@ -21,6 +22,7 @@ public class MyCanvas extends JComponent implements Runnable {
     private Thread thread;
 //    private Images images;
     private Init init;
+    
 
     public MyCanvas(Dimension dim) {
 //        images = new Images();
