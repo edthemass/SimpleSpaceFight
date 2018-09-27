@@ -22,7 +22,6 @@ public class MyCanvas extends JComponent implements Runnable {
     private Thread thread;
 //    private Images images;
     public Init init;
-    
 
     public MyCanvas(Dimension dim) {
 //        images = new Images();
@@ -31,15 +30,12 @@ public class MyCanvas extends JComponent implements Runnable {
         thread.start();
     }
 
-    
-    
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D) g;
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         init.draw(g2d);
-        Painter.draw(g2d);
     }
 
     public void update() {

@@ -7,7 +7,7 @@ package game;
 
 import java.awt.Graphics2D;
 import java.awt.Polygon;
-import javax.swing.KeyStroke;
+
 
 /**
  *
@@ -43,7 +43,7 @@ public class Enemy {
         if(x <= 0){
             travel = +2;
         }
-        // -60 Feindgrösse
+        // -80 Feindgrösse sonst fliegt dieser aus Bildschirm
         if(x >= 800 - 80){
             travel = -2;
         }
@@ -55,7 +55,7 @@ public class Enemy {
 
     private void shooting() {
         //new Bullet();
-//        canvas.init.bullets.add(new Bullet(polygon.xpoints[1], polygon.ypoints[1]));
+        canvas.init.bullets.add(new Bullet(polygon.xpoints[1], polygon.ypoints[1], true));
     }
 
     public void update() {
