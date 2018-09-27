@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package oldbutgold;
 
+import oldbutgold.MyShip;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;

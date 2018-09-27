@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package oldbutgold;
+package game;
 
 import java.awt.Graphics2D;
 

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package game;
+package oldbutgold;
 
 /**
  *
@@ -15,15 +15,15 @@ public abstract class GameObject {
     private Coordinate objectPosition;
     private double width;
     private double height;
-    private double movingAngle;
-    private double movingDistance;
+//    private double movingAngle;
+//    private double movingDistance;
 
     public GameObject(Coordinate objectPosition, double width, double height) {
         this.objectPosition = objectPosition;
         this.width = width;
         this.height = height;
-        movingAngle = 0;
-        movingDistance = 0;
+//        movingAngle = 0;
+//        movingDistance = 0;
     }
 
     public Coordinate getObjectPosition() {
@@ -50,21 +50,21 @@ public abstract class GameObject {
         this.height = height;
     }
 
-    public double getMovingAngle() {
-        return movingAngle;
-    }
-
-    public void setMovingAngle(double movingAngle) {
-        this.movingAngle = movingAngle;
-    }
-
-    public double getMovingDistance() {
-        return movingDistance;
-    }
-
-    public void setMovingDistance(double movingDistance) {
-        this.movingDistance = movingDistance;
-    }
+//    public double getMovingAngle() {
+//        return movingAngle;
+//    }
+//
+//    public void setMovingAngle(double movingAngle) {
+//        this.movingAngle = movingAngle;
+//    }
+//
+//    public double getMovingDistance() {
+//        return movingDistance;
+//    }
+//
+//    public void setMovingDistance(double movingDistance) {
+//        this.movingDistance = movingDistance;
+//    }
     
     public boolean isLeftOf(GameObject that) {
         return this.getObjectPosition().getX() + this.getWidth() < that.getObjectPosition().getX();
@@ -92,16 +92,16 @@ public abstract class GameObject {
         return new Coordinate(x, y); 
     }
     
-    public void moveGameObject() {
-        
-        Coordinate direction = polarToCartesianCoordinates(movingAngle);
-        
-        objectPosition.setX(objectPosition.getX() + direction.getX() * movingDistance);
-        objectPosition.setY(objectPosition.getY() + direction.getY() * movingDistance);        
-    }
-            
+//    public void moveGameObject() {
+//        
+//        Coordinate direction = polarToCartesianCoordinates(movingAngle);
+//        
+//        objectPosition.setX(objectPosition.getX() + direction.getX() * movingDistance);
+//        objectPosition.setY(objectPosition.getY() + direction.getY() * movingDistance);        
+//    }
+//            
     public void makeMove() {
-        moveGameObject();
+//        moveGameObject();
     }
     
     protected abstract void paintMe(java.awt.Graphics g);     

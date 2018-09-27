@@ -3,8 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package oldbutgold;
-
+package game;
 
 import java.awt.Graphics2D;
 import java.awt.Polygon;
@@ -21,19 +20,18 @@ public class Bullet {
     int x;
     Polygon polygon;
 
-  
-
-    
-    
-    public void draw(Graphics2D g2d) {
-        g2d.drawPolygon(polygon);
-        
+    public Bullet() {
+        polygon = new Polygon(xPoints, yPoints, nPoints);
     }
 
-  
+    public void draw(Graphics2D g2d) {
+        g2d.drawPolygon(polygon);
+
+    }
+
     public void update() {
         polygon.translate(x, -8);
-        if(polygon.ypoints[1] < 0){
+        if (polygon.ypoints[1] < 0) {
             System.out.println("out of place");
         }
     }

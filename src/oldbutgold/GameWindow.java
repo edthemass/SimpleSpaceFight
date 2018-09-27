@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package game;
+package oldbutgold;
 
 import java.awt.Dimension;
 import javax.swing.JFrame;

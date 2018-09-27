@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package oldbutgold;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -21,9 +21,9 @@ public class Missile extends GameObject{
 
     public Missile(Coordinate position, double size, double movingAngle, double movingDistance) {
         super(position, size, size / 3);
-
-        setMovingAngle(movingAngle);
-        setMovingDistance(movingDistance);
+//
+//        setMovingAngle(movingAngle);
+//        setMovingDistance(movingDistance);
     }
 
     public int getRange() {
@@ -53,7 +53,7 @@ public class Missile extends GameObject{
                 getObjectPosition().getY(),
                 getWidth(), getHeight(), 3, 3);
 
-        transform.rotate(getMovingAngle(), missileShape.getCenterX(), missileShape.getCenterY());
+//        transform.rotate(getMovingAngle(), missileShape.getCenterX(), missileShape.getCenterY());
         Shape transformedMissileShape = transform.createTransformedShape(missileShape);
 
         g2d.fill(transformedMissileShape);
