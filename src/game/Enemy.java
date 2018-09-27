@@ -33,19 +33,26 @@ public class Enemy {
         this.canvas = c;
 
     }
-    int travel = +2;
+    int travelSide = +2;
+    int travelUpDown = +1;
     public void move() {
         
         // Wichtig für getroffen werden
         x = polygon.getBounds().x;
         y = polygon.getBounds().y;
-        polygon.translate(travel, 0);
+        polygon.translate(travelSide, travelUpDown);
         if(x <= 0){
-            travel = +2;
+            travelSide = +2;
         }
         // -80 Feindgrösse sonst fliegt dieser aus Bildschirm
         if(x >= 800 - 80){
-            travel = -2;
+            travelSide = -2;
+        }
+        if(y < 0){
+            travelUpDown = +1;
+        }
+        if(y > 400){
+            travelUpDown = -1;
         }
     }
 

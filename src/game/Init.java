@@ -49,7 +49,7 @@ public class Init {
     public void update() {
         --timer;
         if(timer < 0){
-            timer = 100;
+            timer = random.nextInt(100) + 100;
             startsWar();
         }
         
