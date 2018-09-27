@@ -26,7 +26,6 @@ public class MyShip implements KeyListener {
     MyCanvas canvas;
     boolean left, right, shoot;
     boolean killed = false;
-//    ArrayList<Bullet> bullets = new ArrayList<Bullet>();
 
     public MyShip(MyCanvas c, MyImages i) {
         polygon = new Polygon(xPoints, yPoints, nPoints);
@@ -42,12 +41,16 @@ public class MyShip implements KeyListener {
     }
 
     public void draw(Graphics2D g2d) {
-        if(!killed)g2d.drawPolygon(polygon);
+        if (!killed) {
+            g2d.drawPolygon(polygon);
+        }
     }
 
     private void shooting() {
         shoot = true;
-        canvas.init.bullets.add(new Bullet(polygon.xpoints[1], polygon.ypoints[1], false));
+        if (!killed) {
+            canvas.init.bullets.add(new Bullet(polygon.xpoints[1], polygon.ypoints[1], false));
+        }
     }
 
     public void update() {

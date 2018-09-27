@@ -7,23 +7,32 @@ package game;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  *
  * @author p01004090
  */
 public class Init {
-//    MyCanvas canvas;
 
+    MyCanvas c;
+    MyImages images;
     MyShip myShip;
     ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     ArrayList<Enemy> enemys = new ArrayList<>();
+    int timer;
+    Random random = new Random();
 
     public Init(MyCanvas c, MyImages i) {
-//        this.canvas = c;
+        this.c = c;
+        this.images = i;
         myShip = new MyShip(c, i);
-//        bullets = new ArrayList<>();
-        enemys.add(new Enemy(c, i, 200, 0));
+//        startsWar();
+    }
+
+    public void startsWar() {
+        int ranX = random.nextInt(750);
+        enemys.add(new Enemy(c, images, ranX, 0));
     }
 
     public void draw(Graphics2D g2d) {
@@ -38,6 +47,12 @@ public class Init {
     }
 
     public void update() {
+        --timer;
+        if(timer < 0){
+            timer = 100;
+            startsWar();
+        }
+        
         myShip.update();
 
         for (int i = 0; i < bullets.size(); i++) {
@@ -56,9 +71,7 @@ public class Init {
         // Schuss auf Feind prüfen
         for (int i = 0; i < enemys.size(); i++) {
             enemys.get(i).update();
-            if (enemys.get(i).killed == true) {
-                enemys.remove(i);
-            }
+            
             // wenn Feind geetroffen wird = löschen und Kugel auch
             for (int j = 0; j < bullets.size(); j++) {
                 // Aber nur wenn ein Feind existiert ansonsten Exception
@@ -66,6 +79,10 @@ public class Init {
                     enemys.get(i).killed = true;
                     bullets.remove(j);
                 }
+            }
+            
+            if (enemys.get(i).killed == true) {
+                enemys.remove(i);
             }
         }
 
