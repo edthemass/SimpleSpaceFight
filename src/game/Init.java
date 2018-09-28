@@ -45,7 +45,7 @@ public class Init {
 
     public void draw(Graphics2D g2d) {
         bground.draw(g2d);
-        myInterface.draw(g2d);
+
         myShip.draw(g2d);
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).draw(g2d);
@@ -53,7 +53,7 @@ public class Init {
         for (int i = 0; i < enemys.size(); i++) {
             enemys.get(i).draw(g2d);
         }
-
+        myInterface.draw(g2d);
     }
 
     // TODO Doppelter Flug (Zwei Feinde übereinander verhinder) zerstreuung bei berührung

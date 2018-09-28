@@ -15,7 +15,7 @@ import java.awt.Graphics2D;
 public class Background {
 
     MyImages images;
-    int y1, y2;
+    int y1, y2 = -600;
     
     public Background(MyImages img) {
         this.images = img;
@@ -27,6 +27,14 @@ public class Background {
     }
     
     public void update(){
+        y1 += 1;
+        y2 += 1;
+        if(y1 >= 600){
+            y1 = 0;
+        }
+        if(y2 >= 0){
+            y2 = -600;
+        }
         
     }
     
