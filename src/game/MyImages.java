@@ -21,7 +21,7 @@ import javax.imageio.ImageIO;
 public final class MyImages {
     
     private String PATH = "src\\game\\images\\";
-    private String[] SOURCE = {"myShip.png", "bullet.png", "ship1.png", "stars.png"};
+    private String[] SOURCE = {"myShip.png", "bullet.png", "ship1.png", "stars.png", "laser.png"};
     private ArrayList<Image> image;
     BufferedImage img = null;
 

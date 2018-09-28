@@ -18,12 +18,12 @@ public class Bullet {
     int[] yPoints = {3, 0, 3};
     int nPoints = 3;
     int x, y;
-    
+
     MyImages images;
     Polygon polygon;
     boolean out = false;
     boolean enemyShoot;
-    
+
     public Bullet(MyImages img, int x, int y, boolean sh) {
         this.enemyShoot = sh;
         this.x = x;
@@ -34,30 +34,34 @@ public class Bullet {
     }
 
     public void draw(Graphics2D g2d) {
+
         g2d.drawPolygon(polygon);
-        g2d.drawImage(images.getImg(1), x, y, null);
+        if (enemyShoot) {
+            g2d.drawImage(images.getImg(4), x, y, null);
+        } else {
+            g2d.drawImage(images.getImg(1), x, y, null);
+        }
     }
 
     public void update() {
-        
+
         x = polygon.getBounds().x;
         y = polygon.getBounds().y;
-        
+
         // -3 Geschwindigkeit
-        if(!enemyShoot){
+        if (!enemyShoot) {
             polygon.translate(0, -3);
             if (polygon.ypoints[1] < 0) {
                 out = true;
             }
         }
-        if(enemyShoot){
+        if (enemyShoot) {
             polygon.translate(0, +3);
             if (polygon.ypoints[1] > 600) {
                 out = true;
             }
         }
-        
-        
+
     }
 
 }
