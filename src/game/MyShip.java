@@ -59,7 +59,7 @@ public class MyShip implements KeyListener {
     private void shooting() {
         shoot = true;
         if (!killed) {
-            canvas.init.bullets.add(new Bullet(polygon.xpoints[1], polygon.ypoints[1], false));
+            canvas.init.bullets.add(new Bullet(images, polygon.xpoints[1], polygon.ypoints[1], false));
         }
     }
 

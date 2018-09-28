@@ -19,6 +19,7 @@ public class Init {
     MyImages images;
     MyShip myShip;
     MyInterface myInterface;
+    Background bground;
     ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     ArrayList<Enemy> enemys = new ArrayList<>();
     int timer;
@@ -30,18 +31,20 @@ public class Init {
         this.images = i;
         myShip = new MyShip(c, i);
         myInterface = new MyInterface();
+        bground = new Background(i);
     }
 
     // TODO Doppelter Flug (Zwei Feinde übereinander verhinder) zerstreuung bei berührung
     public void newEnemy() {
         // Feindbegrenzung max 20
-        if(enemys.size() < 20){
+        if (enemys.size() < 20) {
             ranX = random.nextInt(750);
             enemys.add(new Enemy(c, images, ranX, -60));
         }
     }
 
     public void draw(Graphics2D g2d) {
+        bground.draw(g2d);
         myInterface.draw(g2d);
         myShip.draw(g2d);
         for (int i = 0; i < bullets.size(); i++) {
@@ -52,17 +55,18 @@ public class Init {
         }
 
     }
-    
+
     // TODO Doppelter Flug (Zwei Feinde übereinander verhinder) zerstreuung bei berührung
     public void update() {
+        bground.update();
+
         --timer;
-        if(timer < 0){
+        if (timer < 0) {
             timer = random.nextInt(100) + 100;
             newEnemy();
         }
-        
+
         myShip.update();
-        myInterface.update();
 
         for (int i = 0; i < bullets.size(); i++) {
             if (myShip.polygon.contains(bullets.get(i).polygon.getBounds())) {
@@ -77,18 +81,17 @@ public class Init {
                 bullets.remove(i);
             }
         }
-        
-        
+
         // Schuss auf Feind prüfen
         for (int i = 0; i < enemys.size(); i++) {
             enemys.get(i).update();
-            
+
             // wenn Feind geetroffen wird = löschen und Kugel auch
             for (int j = 0; j < bullets.size(); j++) {
                 // Aber nur wenn ein Feind existiert ansonsten Exception
                 if ((enemys.size() > 0) && (enemys.get(i).polygon.contains(bullets.get(j).polygon.getBounds()))) {
                     // kein FriendlyFire
-                    if(!bullets.get(j).enemyShoot){
+                    if (!bullets.get(j).enemyShoot) {
                         enemys.get(i).killed = true;
                         bullets.remove(j);
                     }
@@ -100,6 +103,6 @@ public class Init {
                 myInterface.myHits += 1;
             }
         }
-
+        myInterface.update();
     }
 }

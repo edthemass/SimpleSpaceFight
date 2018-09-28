@@ -59,11 +59,12 @@ public class Enemy {
 
     public void draw(Graphics2D g2d) {
         g2d.drawPolygon(polygon);
+        g2d.drawImage(images.getImg(2), x, y, null);
     }
 
     private void shooting() {
         //new Bullet();
-        canvas.init.bullets.add(new Bullet(polygon.xpoints[1], polygon.ypoints[1], true));
+        canvas.init.bullets.add(new Bullet(images, polygon.xpoints[1], polygon.ypoints[1], true));
     }
 
     public void update() {
