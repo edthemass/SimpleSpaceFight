@@ -13,15 +13,23 @@ import java.awt.Graphics2D;
  */
 public class MyInterface {
 
+    String hits = "0";
+    int myHits = 0;
+    boolean gameOver = false;
+    
+    
     public MyInterface() {
 
     }
 
     public void draw(Graphics2D g2d) {
-        g2d.drawString("TEST", 0, 20);
+        g2d.drawString("kills " + hits, 0, 20);
+        if(gameOver)g2d.drawString("GAME OVER", 300, 300);
+        
     }
 
     public void update() {
+        hits = Integer.toString(myHits);
     }
 
 }

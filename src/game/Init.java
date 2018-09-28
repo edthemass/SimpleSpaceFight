@@ -67,6 +67,7 @@ public class Init {
         for (int i = 0; i < bullets.size(); i++) {
             if (myShip.polygon.contains(bullets.get(i).polygon.getBounds())) {
                 myShip.killed = true;
+                myInterface.gameOver = true;
             }
         }
         // Bullets Flug und Spielfeld verlassen. Gilt für beide Seiten
@@ -96,6 +97,7 @@ public class Init {
             // wenn Enemy flag auf Tot steht sterben
             if (enemys.get(i).killed == true) {
                 enemys.remove(i);
+                myInterface.myHits += 1;
             }
         }
 
