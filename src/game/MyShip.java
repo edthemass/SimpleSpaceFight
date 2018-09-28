@@ -5,11 +5,13 @@
  */
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Polygon;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.ArrayList;
+import java.awt.image.BufferedImage;
 import javax.swing.KeyStroke;
 
 /**
@@ -24,14 +26,20 @@ public class MyShip implements KeyListener {
     int[] yPoints = {30, 0, 30};
     int nPoints = 3;
     MyCanvas canvas;
+    MyImages images;
     boolean left, right, shoot;
     boolean killed = false;
+    
+    // invisible = letzten wert auf null setzten, zum testen anlassen
+    Color polygonShipColour = new Color(0, 0, 0, 200);
 
-    public MyShip(MyCanvas c, MyImages i) {
+    public MyShip(MyCanvas c, MyImages img) {
         polygon = new Polygon(xPoints, yPoints, nPoints);
         polygon.translate(400, 500);
         this.canvas = c;
+        this.images = img;
         addKeyListener();
+
     }
 
     private void addKeyListener() {
@@ -42,7 +50,9 @@ public class MyShip implements KeyListener {
 
     public void draw(Graphics2D g2d) {
         if (!killed) {
+            g2d.setColor(polygonShipColour);
             g2d.drawPolygon(polygon);
+            g2d.drawImage(images.getImg(0), x, y, null);
         }
     }
 
@@ -54,6 +64,9 @@ public class MyShip implements KeyListener {
     }
 
     public void update() {
+        x = polygon.getBounds().x;
+        y = polygon.getBounds().y;
+        
         if ((polygon.xpoints[0] > 0) && (left)) {
             polygon.translate(-5, 0);
         }

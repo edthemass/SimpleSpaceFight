@@ -22,6 +22,7 @@ public class Init {
     ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     ArrayList<Enemy> enemys = new ArrayList<>();
     int timer;
+    int ranX;
     Random random = new Random();
 
     public Init(MyCanvas c, MyImages i) {
@@ -29,15 +30,14 @@ public class Init {
         this.images = i;
         myShip = new MyShip(c, i);
         myInterface = new MyInterface();
-//        startsWar();
     }
 
     // TODO Doppelter Flug (Zwei Feinde übereinander verhinder) zerstreuung bei berührung
     public void newEnemy() {
         // Feindbegrenzung max 20
         if(enemys.size() < 20){
-            int ranX = random.nextInt(750);
-            enemys.add(new Enemy(c, images, ranX, -40));
+            ranX = random.nextInt(750);
+            enemys.add(new Enemy(c, images, ranX, -60));
         }
     }
 

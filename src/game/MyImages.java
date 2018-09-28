@@ -6,6 +6,7 @@
 package game;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,30 +18,27 @@ import javax.imageio.ImageIO;
  *
  * @author p01004090
  */
-public class MyImages {
+public final class MyImages {
     
-    ArrayList<Image> image;
-    
-    final String IMG_PATH = "src\\images\\";
-    final String[] IMG_NAME = {/*"s01_20_20.png", "p01_50_50.png" , "d01_24_24.png"*/};
-    
+    private String PATH = "src\\game\\images\\";
+    private String[] SOURCE = {"myShip.png"};
+    private ArrayList<Image> image;
+    BufferedImage img = null;
+
     public MyImages() {
-        image = new ArrayList<Image>();
-        loadImages();
-    }
-    
-    void loadImages(){
-        
+        image = new ArrayList<>();
         try {
-            for(int i = 0; i < IMG_NAME.length; i++){
-                image.add(ImageIO.read(new File(IMG_PATH + IMG_NAME[i])));
+            for(int i = 0; i< SOURCE.length; i++){
+                img = ImageIO.read(new File(PATH + SOURCE[i]));
+                image.add(img);
             }
         } catch (IOException ex) {
             Logger.getLogger(MyImages.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //System.err.println(img);
     }
     
-    public Image getImage(int i){
+    public Image getImg(int i){
         return image.get(i);
     }
 }

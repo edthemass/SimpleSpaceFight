@@ -20,6 +20,7 @@ public class Enemy {
     int[] yPoints = {0, 40, 0};
     int nPoints = 3;
     MyCanvas canvas;
+    MyImages images;
     Bullet bulletTest;
     boolean killed;
     int timer = 100;
@@ -29,13 +30,14 @@ public class Enemy {
     public Enemy(MyCanvas c, MyImages i, int x, int y) {
         this.x = x;
         this.y = y;
+        this.images = i;
         polygon = new Polygon(xPoints, yPoints, nPoints);
         polygon.translate(x, y);
         this.canvas = c;
     }
 
     public void move() {
-        
+
         // Wichtig für getroffen werden
         x = polygon.getBounds().x;
         y = polygon.getBounds().y;
