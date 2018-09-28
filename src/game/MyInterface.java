@@ -11,7 +11,6 @@ import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,7 +46,6 @@ public class MyInterface {
             g2d.setFont(font40);
             g2d.drawString("GAME OVER", 280, 300);
         }
-
     }
 
     public void update() {

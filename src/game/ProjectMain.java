@@ -5,7 +5,6 @@
  */
 package game;
 
-import oldbutgold.GameWindow;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 
