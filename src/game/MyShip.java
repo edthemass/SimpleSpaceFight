@@ -25,11 +25,12 @@ public class MyShip implements KeyListener {
     int[] xPoints = {0, 20, 40};
     int[] yPoints = {30, 0, 30};
     int nPoints = 3;
+    int coolDown;
     MyCanvas canvas;
     MyImages images;
     boolean left, right, shoot;
     boolean killed = false;
-    
+
     // invisible = letzten wert auf null setzten, zum testen anlassen
     Color polygonShipColour = new Color(0, 0, 0, 200);
 
@@ -57,16 +58,13 @@ public class MyShip implements KeyListener {
     }
 
     private void shooting() {
-        shoot = true;
-        if (!killed) {
-            canvas.init.bullets.add(new Bullet(images, polygon.xpoints[1], polygon.ypoints[1], false));
-        }
+        canvas.init.bullets.add(new Bullet(images, polygon.xpoints[1], polygon.ypoints[1], false));
     }
 
     public void update() {
         x = polygon.getBounds().x;
         y = polygon.getBounds().y;
-        
+
         if ((polygon.xpoints[0] > 0) && (left)) {
             polygon.translate(-5, 0);
         }
@@ -74,6 +72,20 @@ public class MyShip implements KeyListener {
         if ((polygon.xpoints[2] <= (800 - 20)) && (right)) {
             polygon.translate(+5, 0);
         }
+
+        // Salvenschießen
+        if ((shoot) && (!killed)) {
+
+            if (coolDown <= 0) {
+                shooting();
+                coolDown = 50;
+            }
+            coolDown--;
+            
+        }
+        if(!shoot)coolDown = 0;
+        System.out.println("cd  " + shoot + coolDown);
+
     }
 
     @Override
@@ -89,7 +101,7 @@ public class MyShip implements KeyListener {
             right = true;
         }
         if ((e.getKeyCode() == KeyEvent.VK_SPACE) && (!shoot)) {
-            shooting();
+            shoot = true;
         }
     }
 
