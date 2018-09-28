@@ -8,7 +8,6 @@ package game;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 
-
 /**
  *
  * @author P01004090
@@ -24,6 +23,8 @@ public class Enemy {
     Bullet bulletTest;
     boolean killed;
     int timer = 100;
+    int travelSide = +2;
+    int travelUpDown = +1;
 
     public Enemy(MyCanvas c, MyImages i, int x, int y) {
         this.x = x;
@@ -31,27 +32,25 @@ public class Enemy {
         polygon = new Polygon(xPoints, yPoints, nPoints);
         polygon.translate(x, y);
         this.canvas = c;
-
     }
-    int travelSide = +2;
-    int travelUpDown = +1;
+
     public void move() {
         
         // Wichtig für getroffen werden
         x = polygon.getBounds().x;
         y = polygon.getBounds().y;
         polygon.translate(travelSide, travelUpDown);
-        if(x <= 0){
+        if (x <= 0) {
             travelSide = +2;
         }
         // -80 Feindgrösse sonst fliegt dieser aus Bildschirm
-        if(x >= 800 - 80){
+        if (x >= 800 - 80) {
             travelSide = -2;
         }
-        if(y < 0){
+        if (y < 40) {
             travelUpDown = +1;
         }
-        if(y > 400){
+        if (y > 400) {
             travelUpDown = -1;
         }
     }
@@ -66,13 +65,13 @@ public class Enemy {
     }
 
     public void update() {
+        // Random Schuß
         if (timer < 0) {
             shooting();
             timer = 100;
-            System.err.println("feind angriff");
         }
         timer--;
-        
+
         move();
     }
 }

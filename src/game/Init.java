@@ -18,6 +18,7 @@ public class Init {
     MyCanvas c;
     MyImages images;
     MyShip myShip;
+    MyInterface myInterface;
     ArrayList<Bullet> bullets = new ArrayList<Bullet>();
     ArrayList<Enemy> enemys = new ArrayList<>();
     int timer;
@@ -27,15 +28,21 @@ public class Init {
         this.c = c;
         this.images = i;
         myShip = new MyShip(c, i);
+        myInterface = new MyInterface();
 //        startsWar();
     }
 
+    // TODO Doppelter Flug (Zwei Feinde übereinander verhinder) zerstreuung bei berührung
     public void newEnemy() {
-        int ranX = random.nextInt(750);
-        enemys.add(new Enemy(c, images, ranX, 0));
+        // Feindbegrenzung max 20
+        if(enemys.size() < 20){
+            int ranX = random.nextInt(750);
+            enemys.add(new Enemy(c, images, ranX, -40));
+        }
     }
 
     public void draw(Graphics2D g2d) {
+        myInterface.draw(g2d);
         myShip.draw(g2d);
         for (int i = 0; i < bullets.size(); i++) {
             bullets.get(i).draw(g2d);
@@ -45,7 +52,8 @@ public class Init {
         }
 
     }
-
+    
+    // TODO Doppelter Flug (Zwei Feinde übereinander verhinder) zerstreuung bei berührung
     public void update() {
         --timer;
         if(timer < 0){
@@ -54,6 +62,7 @@ public class Init {
         }
         
         myShip.update();
+        myInterface.update();
 
         for (int i = 0; i < bullets.size(); i++) {
             if (myShip.polygon.contains(bullets.get(i).polygon.getBounds())) {
@@ -67,7 +76,8 @@ public class Init {
                 bullets.remove(i);
             }
         }
-
+        
+        
         // Schuss auf Feind prüfen
         for (int i = 0; i < enemys.size(); i++) {
             enemys.get(i).update();
