@@ -17,11 +17,14 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
+import static javax.sound.sampled.AudioSystem.getAudioInputStream;
+import static javax.sound.sampled.AudioSystem.getAudioInputStream;
+import static javax.sound.sampled.AudioSystem.getClip;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import sun.audio.AudioPlayer;
 import sun.audio.AudioStream;
-
 
 /**
  *
@@ -47,18 +50,43 @@ public class MySounds {
         }
 
     }
-    
-    public void update(){
-        
+
+    public void update() {
+
     }
-    
-    public void playMusik() { 
+
+    public void funktioniert() {
         try {
             theStream = new AudioStream(new FileInputStream(PATH + "beat.wav"));
         } catch (IOException ex) {
             Logger.getLogger(MySounds.class.getName()).log(Level.SEVERE, null, ex);
         }
         AudioPlayer.player.start(theStream);
+    }
+
+    public void playMusik() {
+        File audioFile = new File(PATH + "beat.wav");
+        // Läuft bereits in einem eigenen Thread
+        playLoop(audioFile);
+    }
+
+    void playLoop(File audioFile){
+        AudioInputStream audioInputStream = null;
+        try {
+            audioInputStream = getAudioInputStream(audioFile);
+            Clip clip = getClip();
+            clip.open(audioInputStream);
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+            clip.start();
+        } catch (UnsupportedAudioFileException | IOException | LineUnavailableException ex) {
+            Logger.getLogger(MySounds.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                audioInputStream.close();
+            } catch (IOException ex) {
+                Logger.getLogger(MySounds.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 
     public void playSound(int i) {
