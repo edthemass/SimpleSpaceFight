@@ -30,13 +30,15 @@ public class MyShip implements KeyListener {
     MyImages images;
     boolean left, right, shoot;
     boolean killed = false;
+    MySounds sounds;
 
     // invisible = letzten wert auf null setzten, zum testen anlassen
     Color polygonShipColour = new Color(0, 0, 0, 200);
 
-    public MyShip(MyCanvas c, MyImages img) {
+    public MyShip(MyCanvas c, MyImages img, MySounds s) {
         polygon = new Polygon(xPoints, yPoints, nPoints);
         polygon.translate(400, 500);
+        this.sounds = s;
         this.canvas = c;
         this.images = img;
         addKeyListener();
@@ -58,7 +60,8 @@ public class MyShip implements KeyListener {
     }
 
     private void shooting() {
-        canvas.init.bullets.add(new Bullet(images, polygon.xpoints[1], polygon.ypoints[1], false));
+        sounds.getSound(2);
+        canvas.init.bullets.add(new Bullet(images, polygon.xpoints[1], polygon.ypoints[1], false, sounds));
     }
 
     public void update() {
@@ -84,8 +87,6 @@ public class MyShip implements KeyListener {
             
         }
         if(!shoot)coolDown = 0;
-        System.out.println("cd  " + shoot + coolDown);
-
     }
 
     @Override

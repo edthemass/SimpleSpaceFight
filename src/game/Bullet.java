@@ -5,6 +5,7 @@
  */
 package game;
 
+import com.sun.javafx.application.PlatformImpl;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 
@@ -20,17 +21,20 @@ public class Bullet {
     int x, y;
 
     MyImages images;
+    MySounds sounds;
     Polygon polygon;
     boolean out = false;
     boolean enemyShoot;
 
-    public Bullet(MyImages img, int x, int y, boolean sh) {
+    public Bullet(MyImages img, int x, int y, boolean sh, MySounds s) {
         this.enemyShoot = sh;
+        this.sounds = s;
         this.x = x;
         this.y = y;
         this.images = img;
         polygon = new Polygon(xPoints, yPoints, nPoints);
         polygon.translate(x, y);
+        
     }
 
     public void draw(Graphics2D g2d) {
@@ -50,12 +54,14 @@ public class Bullet {
 
         // -3 Geschwindigkeit
         if (!enemyShoot) {
+            
             polygon.translate(0, -3);
             if (polygon.ypoints[1] < 0) {
                 out = true;
             }
         }
         if (enemyShoot) {
+//            sounds.getSound(0);
             polygon.translate(0, +3);
             if (polygon.ypoints[1] > 600) {
                 out = true;

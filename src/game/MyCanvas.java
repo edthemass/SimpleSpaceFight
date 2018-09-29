@@ -5,6 +5,7 @@
  */
 package game;
 
+import com.sun.javafx.application.PlatformImpl;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -24,9 +25,13 @@ public class MyCanvas extends JComponent implements Runnable {
 
     public MyCanvas(Dimension dim) {
 //        images = new Images();
+//        new MySounds();
         init = new Init(this, new MyImages());
         thread = new Thread(this);
         thread.start();
+        // implement Sound brauch das um abgespielt zu werden
+//        PlatformImpl.startup(() -> {});
+        
     }
 
     @Override

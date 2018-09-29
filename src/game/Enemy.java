@@ -26,10 +26,12 @@ public class Enemy {
     int timer = 100;
     int travelSide = +2;
     int travelUpDown = +1;
+    MySounds sounds;
 
-    public Enemy(MyCanvas c, MyImages i, int x, int y) {
+    public Enemy(MyCanvas c, MyImages i, int x, int y, MySounds s) {
         this.x = x;
         this.y = y;
+        this.sounds = s;
         this.images = i;
         polygon = new Polygon(xPoints, yPoints, nPoints);
         polygon.translate(x, y);
@@ -64,7 +66,8 @@ public class Enemy {
 
     private void shooting() {
         //new Bullet();
-        canvas.init.bullets.add(new Bullet(images, polygon.xpoints[1], polygon.ypoints[1], true));
+        sounds.getSound(0);
+        canvas.init.bullets.add(new Bullet(images, polygon.xpoints[1], polygon.ypoints[1], true, sounds));
     }
 
     public void update() {

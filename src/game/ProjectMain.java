@@ -5,7 +5,9 @@
  */
 package game;
 
+import com.sun.javafx.application.PlatformImpl;
 import java.awt.Dimension;
+import javafx.application.Application;
 import javax.swing.JFrame;
 
 /**
@@ -18,6 +20,9 @@ public class ProjectMain {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+//        Application.launch();
+//        PlatformImpl.startup(() -> {});
+//        new MySounds();
         // TODO code application logic here
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,6 +35,7 @@ public class ProjectMain {
 //        canvas.setFrameSize();
         frame.setVisible(true);    
                
+        
 //        System.out.println(ergebnis[0][0]);
 //        System.out.println(ergebnis[1][0]);
 //        new GameWindow();

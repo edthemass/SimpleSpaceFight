@@ -17,6 +17,7 @@ public class Init {
 
     MyCanvas c;
     MyImages images;
+    MySounds sounds;
     MyShip myShip;
     MyInterface myInterface;
     Background bground;
@@ -29,7 +30,8 @@ public class Init {
     public Init(MyCanvas c, MyImages i) {
         this.c = c;
         this.images = i;
-        myShip = new MyShip(c, i);
+        sounds = new MySounds();
+        myShip = new MyShip(c, i, sounds);
         myInterface = new MyInterface();
         bground = new Background(i);
     }
@@ -39,7 +41,7 @@ public class Init {
         // Feindbegrenzung max 20
         if (enemys.size() < 20) {
             ranX = random.nextInt(750);
-            enemys.add(new Enemy(c, images, ranX, -60));
+            enemys.add(new Enemy(c, images, ranX, -60, sounds));
         }
     }
 
@@ -68,10 +70,14 @@ public class Init {
 
         myShip.update();
 
+        int goTimer = 100;
         for (int i = 0; i < bullets.size(); i++) {
-            if (myShip.polygon.contains(bullets.get(i).polygon.getBounds())) {
+            if ((myShip.polygon.contains(bullets.get(i).polygon.getBounds())) && (!myShip.killed)) {
+                sounds.getSound(3);
                 myShip.killed = true;
                 myInterface.gameOver = true;
+                // Geschrei
+                sounds.getSound(4);
             }
         }
         // Bullets Flug und Spielfeld verlassen. Gilt für beide Seiten
@@ -94,12 +100,14 @@ public class Init {
                     if (!bullets.get(j).enemyShoot) {
                         enemys.get(i).killed = true;
                         bullets.remove(j);
+                        
                     }
                 }
             }
             // wenn Enemy flag auf Tot steht sterben
             if (enemys.get(i).killed == true) {
                 enemys.remove(i);
+                sounds.getSound(1);
                 myInterface.myHits += 1;
             }
         }
