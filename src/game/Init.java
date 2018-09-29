@@ -8,6 +8,7 @@ package game;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Random;
+import javax.sound.sampled.LineUnavailableException;
 
 /**
  *
@@ -27,13 +28,15 @@ public class Init {
     int ranX;
     Random random = new Random();
 
-    public Init(MyCanvas c, MyImages i) {
+    public Init(MyCanvas c, MyImages i){
         this.c = c;
         this.images = i;
         sounds = new MySounds();
         myShip = new MyShip(c, i, sounds);
         myInterface = new MyInterface();
         bground = new Background(i);
+        
+        sounds.playMusik();
     }
 
     // TODO Doppelter Flug (Zwei Feinde übereinander verhinder) zerstreuung bei berührung
@@ -60,6 +63,7 @@ public class Init {
 
     // TODO Doppelter Flug (Zwei Feinde übereinander verhinder) zerstreuung bei berührung
     public void update() {
+        sounds.update();
         bground.update();
 
         --timer;
@@ -73,11 +77,11 @@ public class Init {
         int goTimer = 100;
         for (int i = 0; i < bullets.size(); i++) {
             if ((myShip.polygon.contains(bullets.get(i).polygon.getBounds())) && (!myShip.killed)) {
-                sounds.getSound(3);
+                sounds.playSound(3);
                 myShip.killed = true;
                 myInterface.gameOver = true;
                 // Geschrei
-                sounds.getSound(4);
+                sounds.playSound(4);
             }
         }
         // Bullets Flug und Spielfeld verlassen. Gilt für beide Seiten
@@ -107,7 +111,7 @@ public class Init {
             // wenn Enemy flag auf Tot steht sterben
             if (enemys.get(i).killed == true) {
                 enemys.remove(i);
-                sounds.getSound(1);
+                sounds.playSound(1);
                 myInterface.myHits += 1;
             }
         }

@@ -60,7 +60,7 @@ public class MyShip implements KeyListener {
     }
 
     private void shooting() {
-        sounds.getSound(2);
+        sounds.playSound(2);
         canvas.init.bullets.add(new Bullet(images, polygon.xpoints[1], polygon.ypoints[1], false, sounds));
     }
 
