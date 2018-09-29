@@ -39,8 +39,7 @@ public class MySounds {
     AudioStream theStream = null;
 
     public MySounds() {
-        PlatformImpl.startup(() -> {
-        });
+        PlatformImpl.startup(() -> {});
 //        new MySounds();
 //        Media hitList = new Media(new File(PATH + gameSounds[0]).toURI().toString());
 //        MediaPlayer mediaPlayer = new MediaPlayer(hitList);
@@ -91,6 +90,7 @@ public class MySounds {
 
     public void playSound(int i) {
         mediaPlayer = new MediaPlayer(hitList.get(i));
+        mediaPlayer.setVolume(0.5);
         mediaPlayer.play();
     }
 }
