@@ -5,7 +5,6 @@
  */
 package game;
 
-import com.sun.javafx.application.PlatformImpl;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 
